@@ -14,3 +14,5 @@
 Welcome to `@interactive-video-labs/vue` — a lightweight Vue 3 wrapper around the `@interactive-video-labs/core` engine for cue-driven interactive video experiences.
 
 This wrapper enables seamless integration of interactive video players into Vue applications using idiomatic Vue components and bindings, while staying close to the underlying core engine API.
+
+---
