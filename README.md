@@ -5,7 +5,7 @@
 <p align="center">
   <img src="https://img.shields.io/npm/v/@interactive-video-labs/vue" alt="NPM Version" />
   <img src="https://img.shields.io/npm/l/@interactive-video-labs/vue" alt="NPM License" />
-  <img src="https://img.shields.io/npm/dm/@interactive-video-labs/vue?style=flat-square" alt="NPM Downloads" />
+  <img src="https://img.shields.io/npm/d18m/@interactive-video-labs/vue?style=flat-square" alt="NPM Downloads" />
   <a href="https://github.com/interactive-video-labs/interactive-video-vue-wrapper/actions">
     <img src="https://github.com/interactive-video-labs/interactive-video-vue-wrapper/actions/workflows/release.yml/badge.svg" alt="Build Status" />
   </a>
