@@ -52,8 +52,7 @@
   "dependencies": {
     "jsdom": "^26.1.0",
     "tsup": "^8.5.0",
-    "typescript": "^5.8.3",
-    "vitest": "^3.2.4"
+    "typescript": "^5.8.3"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.5",
