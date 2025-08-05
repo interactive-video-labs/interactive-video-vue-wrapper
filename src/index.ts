@@ -1,35 +1,84 @@
 import { defineComponent, onMounted, onUnmounted, ref, watch, h, PropType } from 'vue';
 import { IVLabsPlayer, PlayerConfig, CuePoint, Translations, AnalyticsEvent, AnalyticsPayload } from '@interactive-video-labs/core';
 
-// Define the props interface based on the React component's props
+/**
+ * Props for the InteractiveVideo component.
+ */
 export interface InteractiveVideoProps extends Omit<PlayerConfig, 'videoUrl' | 'cues' | 'translations'> {
+  /**
+   * The URL of the video to be loaded.
+   */
   videoUrl: string;
+  /**
+   * Callback function for analytics events.
+   * @param event The name of the event.
+   * @param payload The data associated with the event.
+   */
   onAnalyticsEvent?: (event: AnalyticsEvent, payload?: AnalyticsPayload) => void;
+  /**
+   * An array of cue points for interactive events.
+   */
   cues?: CuePoint[];
+  /**
+   * An object containing translations for the player.
+   */
   translations?: Translations;
 }
 
+
+/**
+ * A Vue component that wraps the IVLabsPlayer to provide interactive video capabilities.
+ * It handles the lifecycle of the player, including initialization, updates, and destruction.
+ */
 export default defineComponent({
   name: 'InteractiveVideo',
   props: {
+    /**
+     * The URL of the video to be loaded.
+     */
     videoUrl: { type: String, required: true },
+    /**
+     * Callback function for analytics events.
+     */
     onAnalyticsEvent: { type: Function as PropType<(event: AnalyticsEvent, payload?: AnalyticsPayload) => void> },
+    /**
+     * An array of cue points for interactive events.
+     */
     cues: { type: Array as PropType<CuePoint[]> },
+    /**
+     * An object containing translations for the player.
+     */
     translations: { type: Object as PropType<Translations> },
-    // It's better to explicitly define the props that can be passed
+    /**
+     * Whether the video should start playing automatically.
+     */
     autoplay: { type: Boolean, default: false },
+    /**
+     * Whether the video should loop.
+     */
     loop: { type: Boolean, default: false },
+    /**
+     * The locale to be used for the player.
+     */
     locale: { type: String, default: 'en' },
-    // Add other PlayerConfig properties here as needed
   },
+  /**
+   * The setup function for the component.
+   * @param props The component's props.
+   * @param attrs The component's attributes.
+   * @param expose Function to expose properties to the parent component.
+   * @returns A render function that creates the component's DOM structure.
+   */
   setup(props, { attrs, expose }) {
     const containerRef = ref<HTMLDivElement | null>(null);
     const playerRef = ref<IVLabsPlayer | null>(null);
     const uniqueId = `ivlabs-player-${Math.random().toString(36).substr(2, 9)}`;
 
+    /**
+     * Initializes the player when the component is mounted.
+     */
     onMounted(() => {
       if (containerRef.value) {
-        // Combine props and non-prop attributes to pass to the player
         const playerConfig: PlayerConfig = {
           ...attrs,
           videoUrl: props.videoUrl,
@@ -39,12 +88,13 @@ export default defineComponent({
         };
 
         try {
-          // Use a timeout to ensure the element is in the DOM
+          // Use a timeout to ensure the element is in the DOM.
           setTimeout(() => {
             if (containerRef.value) {
               const player = new IVLabsPlayer(`#${uniqueId}`, playerConfig);
               playerRef.value = player;
 
+              // Register event listeners if onAnalyticsEvent is provided.
               if (props.onAnalyticsEvent) {
                 player.on('PLAYER_LOADED', (payload?: AnalyticsPayload) => (props.onAnalyticsEvent as Function)('PLAYER_LOADED', payload));
                 player.on('VIDEO_STARTED', (payload?: AnalyticsPayload) => (props.onAnalyticsEvent as Function)('VIDEO_STARTED', payload));
@@ -55,10 +105,12 @@ export default defineComponent({
                 player.on('ERROR', (payload?: AnalyticsPayload) => (props.onAnalyticsEvent as Function)('ERROR', payload));
               }
 
+              // Load initial cues if provided.
               if (props.cues) {
                 player.loadCues(props.cues);
               }
 
+              // Load initial translations if provided.
               if (props.translations) {
                 player.loadTranslations(props.locale, props.translations);
               }
@@ -70,6 +122,9 @@ export default defineComponent({
       }
     });
 
+    /**
+     * Destroys the player when the component is unmounted.
+     */
     onUnmounted(() => {
       if (playerRef.value) {
         playerRef.value.destroy();
@@ -77,21 +132,31 @@ export default defineComponent({
       }
     });
 
+    /**
+     * Watches for changes in the cues prop and reloads them in the player.
+     */
     watch(() => props.cues, (newCues) => {
       if (playerRef.value && newCues) {
         playerRef.value.loadCues(newCues);
       }
     }, { deep: true });
 
+    /**
+     * Watches for changes in the translations prop and reloads them in the player.
+     */
     watch(() => props.translations, (newTranslations) => {
       if (playerRef.value && newTranslations) {
         playerRef.value.loadTranslations(props.locale, newTranslations);
       }
     }, { deep: true });
 
+    // Expose the player instance to the parent component.
     expose({ playerRef });
 
-    // Use Vue's render function `h` to create the container div
+    /**
+     * The render function for the component.
+     * @returns A VNode representing the container div for the player.
+     */
     return () => h('div', {
       ref: containerRef,
       id: uniqueId,
