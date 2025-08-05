@@ -87,20 +87,13 @@ export default defineComponent({
           locale: props.locale,
         };
 
-        try {
-// Use a timeout to ensure the element is in the DOM.
-setTimeout(() => {
-  try {
-    if (containerRef.value) {
-      const player = new IVLabsPlayer(`#${uniqueId}`, playerConfig);
-      playerRef.value = player;
+        setTimeout(() => {
+          try {
+            if (containerRef.value) {
+              const player = new IVLabsPlayer(`#${uniqueId}`, playerConfig);
+              playerRef.value = player;
 
-      // Register event listeners if onAnalyticsEvent is provided.
-    }
-  } catch (error) {
-    console.error('Error initializing IVLabsPlayer:', error);
-  }
-}, 0);
+              // Register event listeners if onAnalyticsEvent is provided.
               if (props.onAnalyticsEvent) {
                 player.on('PLAYER_LOADED', (payload?: AnalyticsPayload) => (props.onAnalyticsEvent as Function)('PLAYER_LOADED', payload));
                 player.on('VIDEO_STARTED', (payload?: AnalyticsPayload) => (props.onAnalyticsEvent as Function)('VIDEO_STARTED', payload));
@@ -121,10 +114,10 @@ setTimeout(() => {
                 player.loadTranslations(props.locale, props.translations);
               }
             }
-          }, 0);
-        } catch (error) {
-          console.error('Error initializing IVLabsPlayer:', error);
-        }
+          } catch (error) {
+            console.error('Error initializing IVLabsPlayer:', error);
+          }
+        }, 0);
       }
     });
 
