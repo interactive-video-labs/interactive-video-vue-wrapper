@@ -74,11 +74,10 @@ export default defineComponent({
     const playerRef = ref<IVLabsPlayer | null>(null);
     const uniqueId = `ivlabs-player-${Math.random().toString(36).substr(2, 9)}`;
 
-    /**
-     * Initializes the player when the component is mounted.
-     */
+    // Initialize player only after the component is mounted and the DOM is ready
     onMounted(() => {
-      if (containerRef.value) {
+      const newContainer = containerRef.value;
+      if (newContainer && !playerRef.value) {
         const playerConfig: PlayerConfig = {
           ...attrs,
           videoUrl: props.videoUrl,
@@ -87,37 +86,30 @@ export default defineComponent({
           locale: props.locale,
         };
 
-        setTimeout(() => {
-          try {
-            if (containerRef.value) {
-              const player = new IVLabsPlayer(`#${uniqueId}`, playerConfig);
-              playerRef.value = player;
+        try {
+          const player = new IVLabsPlayer(`#${uniqueId}`, playerConfig);
+          playerRef.value = player;
 
-              // Register event listeners if onAnalyticsEvent is provided.
-              if (props.onAnalyticsEvent) {
-                player.on('PLAYER_LOADED', (payload?: AnalyticsPayload) => (props.onAnalyticsEvent as Function)('PLAYER_LOADED', payload));
-                player.on('VIDEO_STARTED', (payload?: AnalyticsPayload) => (props.onAnalyticsEvent as Function)('VIDEO_STARTED', payload));
-                player.on('VIDEO_PAUSED', (payload?: AnalyticsPayload) => (props.onAnalyticsEvent as Function)('VIDEO_PAUSED', payload));
-                player.on('VIDEO_ENDED', (payload?: AnalyticsPayload) => (props.onAnalyticsEvent as Function)('VIDEO_ENDED', payload));
-                player.on('CUE_TRIGGERED', (payload?: AnalyticsPayload) => (props.onAnalyticsEvent as Function)('CUE_TRIGGERED', payload));
-                player.on('INTERACTION_COMPLETED', (payload?: AnalyticsPayload) => (props.onAnalyticsEvent as Function)('INTERACTION_COMPLETED', payload));
-                player.on('ERROR', (payload?: AnalyticsPayload) => (props.onAnalyticsEvent as Function)('ERROR', payload));
-              }
-
-              // Load initial cues if provided.
-              if (props.cues) {
-                player.loadCues(props.cues);
-              }
-
-              // Load initial translations if provided.
-              if (props.translations) {
-                player.loadTranslations(props.locale, props.translations);
-              }
-            }
-          } catch (error) {
-            console.error('Error initializing IVLabsPlayer:', error);
+          if (props.onAnalyticsEvent) {
+            player.on('PLAYER_LOADED', (payload?: AnalyticsPayload) => (props.onAnalyticsEvent as Function)('PLAYER_LOADED', payload));
+            player.on('VIDEO_STARTED', (payload?: AnalyticsPayload) => (props.onAnalyticsEvent as Function)('VIDEO_STARTED', payload));
+            player.on('VIDEO_PAUSED', (payload?: AnalyticsPayload) => (props.onAnalyticsEvent as Function)('VIDEO_PAUSED', payload));
+            player.on('VIDEO_ENDED', (payload?: AnalyticsPayload) => (props.onAnalyticsEvent as Function)('VIDEO_ENDED', payload));
+            player.on('CUE_TRIGGERED', (payload?: AnalyticsPayload) => (props.onAnalyticsEvent as Function)('CUE_TRIGGERED', payload));
+            player.on('INTERACTION_COMPLETED', (payload?: AnalyticsPayload) => (props.onAnalyticsEvent as Function)('INTERACTION_COMPLETED', payload));
+            player.on('ERROR', (payload?: AnalyticsPayload) => (props.onAnalyticsEvent as Function)('ERROR', payload));
           }
-        }, 0);
+
+          if (props.cues) {
+            player.loadCues(props.cues);
+          }
+
+          if (props.translations) {
+            player.loadTranslations(props.locale, props.translations);
+          }
+        } catch (error) {
+          console.error('Error initializing IVLabsPlayer:', error);
+        }
       }
     });
 
