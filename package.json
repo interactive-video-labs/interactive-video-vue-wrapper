@@ -45,6 +45,10 @@
     "url": "https://github.com/interactive-video-labs/interactive-video-vue-wrapper/issues"
   },
   "packageManager": "pnpm@10.13.1",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "peerDependencies": {
     "@interactive-video-labs/core": "^0.1.2",
     "vue": "^3.0.0"
