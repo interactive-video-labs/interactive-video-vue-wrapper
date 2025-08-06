@@ -4,7 +4,7 @@ import { IVLabsPlayer, PlayerConfig, CuePoint, Translations, AnalyticsEvent, Ana
 /**
  * Props for the InteractiveVideo component.
  */
-export interface InteractiveVideoProps extends Omit<PlayerConfig, 'videoUrl' | 'cues' | 'translations'> {
+export interface InteractiveVideoProps extends Omit<PlayerConfig, 'videoUrl' | 'cues' | 'translations' | 'targetElementId'> {
   /**
    * The URL of the video to be loaded.
    */
@@ -61,6 +61,10 @@ export default defineComponent({
      * The locale to be used for the player.
      */
     locale: { type: String, default: 'en' },
+    /**
+     * The ID of the target HTML element where the player will be mounted.
+     */
+    targetElementId: { type: String },
   },
   /**
    * The setup function for the component.
@@ -72,7 +76,7 @@ export default defineComponent({
   setup(props, { attrs, expose }) {
     const containerRef = ref<HTMLDivElement | null>(null);
     const playerRef = ref<IVLabsPlayer | null>(null);
-    const uniqueId = `ivlabs-player-${Math.random().toString(36).substr(2, 9)}`;
+    const uniqueId = props.targetElementId || `ivlabs-player-${Math.random().toString(36).substr(2, 9)}`;
 
     // Initialize player only after the component is mounted and the DOM is ready
     onMounted(() => {
