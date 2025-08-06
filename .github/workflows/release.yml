@@ -1,5 +1,5 @@
-name: Publish to npm and GitHub Packages
-
+name: Publish to npm 
+      
 on:
   release:
     types: [created]
@@ -38,15 +38,15 @@ jobs:
       # ----------------------------
       # ✅ GitHub Packages Publish
       # ----------------------------
-      - name: 📦 Configure .npmrc for GitHub Packages
-        run: |
-          echo "@interactive-video-labs:registry=https://npm.pkg.github.com/" > ~/.npmrc
-          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GH_PUBLISH_PAT }}" >> ~/.npmrc
+      # - name: 📦 Configure .npmrc for GitHub Packages
+      #   run: |
+      #     echo "@interactive-video-labs:registry=https://npm.pkg.github.com/" > ~/.npmrc
+      #     echo "//npm.pkg.github.com/:_authToken=${{ secrets.GH_PUBLISH_PAT }}" >> ~/.npmrc
 
-      - name: 🚀 Publish to GitHub Packages
-        run: pnpm publish --no-git-checks --registry=https://npm.pkg.github.com/
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GH_PUBLISH_PAT }}
+      # - name: 🚀 Publish to GitHub Packages
+      #   run: pnpm publish --no-git-checks --registry=https://npm.pkg.github.com/
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{ secrets.GH_PUBLISH_PAT }}
 
       # ----------------------------
       # ✅ npmjs.com Publish
