@@ -23,13 +23,18 @@ jobs:
           version: 10.13.1
           run_install: false
 
-      - name: 🔧 Setup Node.js (for npmjs)
+      - name: 🔧 Setup Node.js (for npm and GitHub)
         uses: actions/setup-node@v4
         with:
           node-version: 18
           registry-url: 'https://registry.npmjs.org/'
           scope: '@interactive-video-labs'
           cache: 'pnpm'
+
+      - name: 🗂️ Configure .npmrc for GitHub Packages
+        run: |
+          echo "@interactive-video-labs:registry=https://npm.pkg.github.com/" >> ~/.npmrc
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GH_PUBLISH_PAT }}" >> ~/.npmrc
 
       - name: 📦 Install dependencies
         run: pnpm install
