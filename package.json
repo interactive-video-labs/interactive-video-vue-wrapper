@@ -46,8 +46,7 @@
   },
   "packageManager": "pnpm@10.13.1",
   "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org/"
+    "access": "public"
   },
   "peerDependencies": {
     "@interactive-video-labs/core": "^0.1.2",
