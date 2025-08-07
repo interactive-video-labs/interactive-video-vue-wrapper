@@ -52,6 +52,29 @@ describe('InteractiveVideo', () => {
     expect(wrapper.find('div').attributes('id')).toContain('ivlabs-player');
   });
 
+  it('initializes the player with a custom targetElementId', async () => {
+    const customId = 'my-custom-player-id';
+    const customElement = document.createElement('div');
+    customElement.id = customId;
+    document.body.appendChild(customElement);
+
+    const wrapper = mount(InteractiveVideo, {
+      props: {
+        videoUrl: 'https://example.com/video.mp4',
+        targetElementId: customId,
+      },
+      attachTo: document.body,
+    });
+
+    vi.runAllTimers();
+    await wrapper.vm.$nextTick();
+
+    expect(IVLabsPlayer).toHaveBeenCalledTimes(1);
+    expect(wrapper.find('div').exists()).toBe(false);
+
+    document.body.removeChild(customElement);
+  });
+
   it('calls onAnalyticsEvent when an event is fired', async () => {
     const onAnalyticsEvent = vi.fn();
     const wrapper = mount(InteractiveVideo, {

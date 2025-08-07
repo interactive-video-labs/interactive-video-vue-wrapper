@@ -1,6 +1,6 @@
 {
   "name": "@interactive-video-labs/vue",
-  "version": "0.0.6",
+  "version": "0.1.0",
   "type": "module",
   "description": "Thin Vue wrapper for the @interactive-video-labs/core engine. Enables cue-based interactive video playback in Vue 3 applications.",
   "main": "dist/index.cjs",
@@ -53,11 +53,11 @@
     "vue": "^3.0.0"
   },
   "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.4",
+    "@vue/test-utils": "^2.4.6",
     "jsdom": "^26.1.0",
     "tsup": "^8.5.0",
-    "typescript": "^5.8.3",
-    "@vitejs/plugin-vue": "^5.0.5",
-    "@vue/test-utils": "^2.4.6",
-    "vitest": "^1.6.0"
+    "typescript": "^5.9.2",
+    "vitest": "^1.6.1"
   }
 }

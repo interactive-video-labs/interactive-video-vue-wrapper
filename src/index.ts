@@ -1,4 +1,4 @@
-import { defineComponent, onMounted, onUnmounted, ref, watch, h, PropType } from 'vue';
+import { defineComponent, onUnmounted, onMounted, ref, watch, h, PropType, nextTick } from 'vue';
 import { IVLabsPlayer, PlayerConfig, CuePoint, Translations, AnalyticsEvent, AnalyticsPayload } from '@interactive-video-labs/core';
 
 /**
@@ -76,50 +76,75 @@ export default defineComponent({
   setup(props, { attrs, expose }) {
     const containerRef = ref<HTMLDivElement | null>(null);
     const playerRef = ref<IVLabsPlayer | null>(null);
-    const uniqueId = props.targetElementId || `ivlabs-player-${Math.random().toString(36).substr(2, 9)}`;
 
-    // Initialize player only after the component is mounted and the DOM is ready
-    onMounted(() => {
-      const newContainer = containerRef.value;
-      if (newContainer && !playerRef.value) {
-        const playerConfig: PlayerConfig = {
-          ...attrs,
-          videoUrl: props.videoUrl,
-          autoplay: props.autoplay,
-          loop: props.loop,
-          locale: props.locale,
-        };
+    // Determine the ID to be used by the IVLabsPlayer.
+    // If targetElementId is provided, use it directly.
+    // Otherwise, generate a unique ID for the div rendered by this component.
+    const playerTargetId = props.targetElementId || `ivlabs-player-${Math.random().toString(36).substr(2, 9)}`;
 
-        try {
-          const player = new IVLabsPlayer(`#${uniqueId}`, playerConfig);
-          playerRef.value = player;
-
-          if (props.onAnalyticsEvent) {
-            player.on('PLAYER_LOADED', (payload?: AnalyticsPayload) => (props.onAnalyticsEvent as Function)('PLAYER_LOADED', payload));
-            player.on('VIDEO_STARTED', (payload?: AnalyticsPayload) => (props.onAnalyticsEvent as Function)('VIDEO_STARTED', payload));
-            player.on('VIDEO_PAUSED', (payload?: AnalyticsPayload) => (props.onAnalyticsEvent as Function)('VIDEO_PAUSED', payload));
-            player.on('VIDEO_ENDED', (payload?: AnalyticsPayload) => (props.onAnalyticsEvent as Function)('VIDEO_ENDED', payload));
-            player.on('CUE_TRIGGERED', (payload?: AnalyticsPayload) => (props.onAnalyticsEvent as Function)('CUE_TRIGGERED', payload));
-            player.on('INTERACTION_COMPLETED', (payload?: AnalyticsPayload) => (props.onAnalyticsEvent as Function)('INTERACTION_COMPLETED', payload));
-            player.on('ERROR', (payload?: AnalyticsPayload) => (props.onAnalyticsEvent as Function)('ERROR', payload));
-          }
-
-          if (props.cues) {
-            player.loadCues(props.cues);
-          }
-
-          if (props.translations) {
-            player.loadTranslations(props.locale, props.translations);
-          }
-        } catch (error) {
-          console.error('Error initializing IVLabsPlayer:', error);
-        }
+    const initializePlayer = () => {
+      if (playerRef.value) {
+        return; // Player already initialized
       }
+
+      // Ensure the target element exists in the DOM before proceeding.
+      const targetElement = document.getElementById(playerTargetId);
+      if (!targetElement) {
+        console.error(`IVLabsPlayer target element with ID '${playerTargetId}' not found.`);
+        return;
+      }
+
+      const playerConfig: PlayerConfig = {
+        ...attrs,
+        videoUrl: props.videoUrl,
+        autoplay: props.autoplay,
+        loop: props.loop,
+        locale: props.locale,
+      };
+
+      try {
+        // Pass the ID of the target element, not the element itself.
+        const player = new IVLabsPlayer(playerTargetId, playerConfig);
+        playerRef.value = player;
+
+        if (props.onAnalyticsEvent) {
+          const analyticsHandler = props.onAnalyticsEvent;
+          const eventsToRegister: AnalyticsEvent[] = [
+            'PLAYER_LOADED',
+            'VIDEO_STARTED',
+            'VIDEO_PAUSED',
+            'VIDEO_ENDED',
+            'CUE_TRIGGERED',
+            'INTERACTION_COMPLETED',
+            'ERROR',
+          ];
+
+          eventsToRegister.forEach((event) => {
+            player.on(event, (payload?: AnalyticsPayload) => {
+              analyticsHandler(event, payload);
+            });
+          });
+        }
+
+        if (props.cues) {
+          player.loadCues(props.cues);
+        }
+
+        if (props.translations) {
+          player.loadTranslations(props.locale, props.translations);
+        }
+      } catch (error) {
+        console.error('Error initializing IVLabsPlayer:', error);
+      }
+    };
+
+    onMounted(() => {
+      // Delay initialization to ensure the DOM is ready
+      nextTick(() => {
+        initializePlayer();
+      });
     });
 
-    /**
-     * Destroys the player when the component is unmounted.
-     */
     onUnmounted(() => {
       if (playerRef.value) {
         playerRef.value.destroy();
@@ -152,11 +177,20 @@ export default defineComponent({
      * The render function for the component.
      * @returns A VNode representing the container div for the player.
      */
-    return () => h('div', {
-      ref: containerRef,
-      id: uniqueId,
-      style: { width: '100%', height: 'auto' },
-      'data-testid': 'interactive-video-container',
-    });
+    return () => {
+      if (props.targetElementId) {
+        // If targetElementId is provided, this component does not render a div.
+        // It expects the user to provide the div with that ID.
+        return null;
+      } else {
+        // If no targetElementId is provided, this component renders its own div.
+        return h('div', {
+          ref: containerRef,
+          id: playerTargetId, // Use the generated ID for this div
+          style: { width: '100%', height: 'auto' },
+          'data-testid': 'interactive-video-container',
+        });
+      }
+    };
   },
 });
