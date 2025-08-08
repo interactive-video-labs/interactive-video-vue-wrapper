@@ -16,6 +16,7 @@ export default defineConfig((options) => ({
         js: `/**
  * ${pkg.name} v${pkg.version}
  * Author: ${pkg.author}
+ * @license MIT
  */
     `,
     },
