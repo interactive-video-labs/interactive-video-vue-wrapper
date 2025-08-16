@@ -1,6 +1,6 @@
 {
   "name": "@interactive-video-labs/vue",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "type": "module",
   "description": "Thin Vue wrapper for the @interactive-video-labs/core engine. Enables cue-based interactive video playback in Vue 3 applications.",
   "main": "dist/index.cjs",
