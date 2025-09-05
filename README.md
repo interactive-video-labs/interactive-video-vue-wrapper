@@ -1,4 +1,5 @@
 # @interactive-video-labs/vue
+
 <p align="center">
   <img src="https://raw.githubusercontent.com/interactive-video-labs/docs/main/logo.svg" width="200px" alt="Interactive Video Labs Logo" />
 </p>
@@ -84,15 +85,15 @@ function handleAnalyticsEvent(event, payload) {
 
 The component accepts the following props:
 
-| Prop                 | Type                                                     | Required | Default     | Description                                                                                             |
-| -------------------- | -------------------------------------------------------- | -------- | ----------- | ------------------------------------------------------------------------------------------------------- |
-| `videoUrl`           | `string`                                                 | `true`   | -           | The URL of the video to be loaded.                                                                      |
-| `cues`               | `CuePoint[]`                                             | `false`  | `[]`        | An array of cue points for interactive events. Can be updated dynamically.                              |
-| `translations`       | `Translations`                                           | `false`  | `{}`        | An object containing translations for the player UI.                                                    |
-| `onAnalyticsEvent`   | `(event: AnalyticsEvent, payload?: AnalyticsPayload) => void` | `false`  | -           | Callback function for analytics events emitted by the player.                                           |
-| `autoplay`           | `boolean`                                                | `false`  | `false`     | Whether the video should start playing automatically.                                                   |
-| `loop`               | `boolean`                                                | `false`  | `false`     | Whether the video should loop.                                                                          |
-| `locale`             | `string`                                                 | `false`  | `'en'`      | The locale to be used for the player (e.g., 'en', 'es').                                                |
+| Prop               | Type                                                          | Required | Default | Description                                                                |
+| ------------------ | ------------------------------------------------------------- | -------- | ------- | -------------------------------------------------------------------------- |
+| `videoUrl`         | `string`                                                      | `true`   | -       | The URL of the video to be loaded.                                         |
+| `cues`             | `CuePoint[]`                                                  | `false`  | `[]`    | An array of cue points for interactive events. Can be updated dynamically. |
+| `translations`     | `Translations`                                                | `false`  | `{}`    | An object containing translations for the player UI.                       |
+| `onAnalyticsEvent` | `(event: AnalyticsEvent, payload?: AnalyticsPayload) => void` | `false`  | -       | Callback function for analytics events emitted by the player.              |
+| `autoplay`         | `boolean`                                                     | `false`  | `false` | Whether the video should start playing automatically.                      |
+| `loop`             | `boolean`                                                     | `false`  | `false` | Whether the video should loop.                                             |
+| `locale`           | `string`                                                      | `false`  | `'en'`  | The locale to be used for the player (e.g., 'en', 'es').                   |
 
 Any additional attributes passed to the component will be forwarded to the underlying `@interactive-video-labs/core` player configuration.
 
@@ -147,10 +148,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <InteractiveVideo
-    ref="videoPlayer"
-    video-url="https://example.com/my-video.mp4"
-  />
+  <InteractiveVideo ref="videoPlayer" video-url="https://example.com/my-video.mp4" />
 </template>
 ```
 
@@ -161,6 +159,7 @@ onMounted(() => {
 For detailed development setup, project structure, testing, build, and publishing instructions, please refer to our [Developer Guide](DEVELOPER.md).
 
 ---
+
 ## Contributing
 
 Contributions are welcome! Please read our [Contributing Guidelines](CONTRIBUTING.md) to get started.

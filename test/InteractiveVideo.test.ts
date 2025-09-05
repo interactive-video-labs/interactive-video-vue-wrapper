@@ -93,7 +93,9 @@ describe('InteractiveVideo', () => {
     const mockPlayerInstance = (IVLabsPlayer as any).mock.results[0].value;
 
     // Simulate an event being fired by the player
-    const eventCallback = (mockPlayerInstance.on as any).mock.calls.find(call => call[0] === 'PLAYER_LOADED')[1];
+    const eventCallback = (mockPlayerInstance.on as any).mock.calls.find(
+      (call) => call[0] === 'PLAYER_LOADED',
+    )[1];
     eventCallback({ some: 'payload' });
 
     expect(onAnalyticsEvent).toHaveBeenCalledWith('PLAYER_LOADED', { some: 'payload' });
