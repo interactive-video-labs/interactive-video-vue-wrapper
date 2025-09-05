@@ -28,20 +28,20 @@ This project adheres to the [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md). By partici
 
 If you find a bug, please open an issue on our [GitHub Issues page](https://github.com/interactive-video-labs/interactive-video-vue-wrapper/issues). When reporting a bug, please include:
 
--   A clear and concise description of the bug.
--   Steps to reproduce the behavior.
--   Expected behavior.
--   Actual behavior.
--   Screenshots or videos if applicable.
--   Your environment (Vue version, browser, OS, etc.).
+- A clear and concise description of the bug.
+- Steps to reproduce the behavior.
+- Expected behavior.
+- Actual behavior.
+- Screenshots or videos if applicable.
+- Your environment (Vue version, browser, OS, etc.).
 
 ### Suggesting Enhancements
 
 If you have an idea for a new feature or an improvement, please open an issue on our [GitHub Issues page](https://github.com/interactive-video-labs/interactive-video-vue-wrapper/issues). When suggesting an enhancement, please include:
 
--   A clear and concise description of the proposed enhancement.
--   The problem it solves or the benefit it provides.
--   Any alternative solutions you've considered.
+- A clear and concise description of the proposed enhancement.
+- The problem it solves or the benefit it provides.
+- Any alternative solutions you've considered.
 
 ### Your First Code Contribution
 
@@ -68,9 +68,9 @@ If you're looking to make your first code contribution, look for issues labeled 
 
 In your pull request description, please:
 
--   Reference any related issues (e.g., `Fixes #123`, `Closes #456`).
--   Provide a clear explanation of your changes.
--   Include screenshots or GIFs if your changes affect the UI.
+- Reference any related issues (e.g., `Fixes #123`, `Closes #456`).
+- Provide a clear explanation of your changes.
+- Include screenshots or GIFs if your changes affect the UI.
 
 ## Development Setup
 
@@ -82,18 +82,18 @@ For detailed instructions on setting up your development environment, installing
 
 We follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) specification for our commit messages. This helps with automated changelog generation and semantic versioning. Examples:
 
--   `feat: add new video playback controls`
--   `fix: resolve autoplay issue on iOS`
--   `docs: update installation instructions`
--   `refactor: improve player initialization logic`
--   `test: add unit tests for cue points`
+- `feat: add new video playback controls`
+- `fix: resolve autoplay issue on iOS`
+- `docs: update installation instructions`
+- `refactor: improve player initialization logic`
+- `test: add unit tests for cue points`
 
 ### TypeScript Styleguide
 
--   Follow existing code style and formatting.
--   Use clear and descriptive variable and function names.
--   Ensure proper type annotations for all functions, variables, and parameters.
--   Avoid `any` type unless absolutely necessary.
+- Follow existing code style and formatting.
+- Use clear and descriptive variable and function names.
+- Ensure proper type annotations for all functions, variables, and parameters.
+- Avoid `any` type unless absolutely necessary.
 
 ## License
 

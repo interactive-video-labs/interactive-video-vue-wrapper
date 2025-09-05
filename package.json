@@ -21,7 +21,9 @@
     "dev": "tsup --watch",
     "test": "vitest run",
     "clean": "rimraf dist",
-    "prepare": "pnpm build"
+    "lint": "eslint . --ext .ts",
+    "format": "prettier --write .",
+    "prepare": "pnpm lint --fix && pnpm format && pnpm build "
   },
   "keywords": [
     "interactive-video",
@@ -53,6 +55,14 @@
     "vue": "^3.0.0"
   },
   "devDependencies": {
+    "prettier": "^3.6.2",
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.34.0",
+    "@typescript-eslint/eslint-plugin": "^8.42.0",
+    "@typescript-eslint/parser": "^8.42.0",
+    "eslint": "^9.34.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
     "@vitejs/plugin-vue": "^6.0.1",
     "@vitest/ui": "^3.2.4",
     "@vue/test-utils": "^2.4.6",

@@ -7,6 +7,7 @@ This document provides essential information for developers looking to contribut
 To get started with local development, follow these steps:
 
 1.  **Clone the repository:**
+
     ```bash
     git clone https://github.com/interactive-video-labs/interactive-video-vue-wrapper.git
     cd interactive-video-vue-wrapper
@@ -26,35 +27,35 @@ To get started with local development, follow these steps:
 
 Here are the common development scripts available:
 
--   **`pnpm build`**: Compiles the TypeScript source code into JavaScript (ESM and CommonJS formats) and generates declaration files (`.d.ts`). This command is run before publishing.
+- **`pnpm build`**: Compiles the TypeScript source code into JavaScript (ESM and CommonJS formats) and generates declaration files (`.d.ts`). This command is run before publishing.
 
-    ```bash
-    pnpm build
-    ```
+  ```bash
+  pnpm build
+  ```
 
--   **`pnpm dev`**: Starts the TypeScript compiler in watch mode, recompiling files on changes. Useful for active development.
+- **`pnpm dev`**: Starts the TypeScript compiler in watch mode, recompiling files on changes. Useful for active development.
 
-    ```bash
-    pnpm dev
-    ```
+  ```bash
+  pnpm dev
+  ```
 
--   **`pnpm test`**: Runs the unit tests using Vitest.
+- **`pnpm test`**: Runs the unit tests using Vitest.
 
-    ```bash
-    pnpm test
-    ```
+  ```bash
+  pnpm test
+  ```
 
--   **`pnpm clean`**: Removes the `dist` directory, clearing all compiled output.
+- **`pnpm clean`**: Removes the `dist` directory, clearing all compiled output.
 
-    ```bash
-    pnpm clean
-    ```
+  ```bash
+  pnpm clean
+  ```
 
--   **`pnpm prepare`**: This script is typically run after `pnpm install` and before `pnpm publish`. In this project, it simply runs `pnpm build`.
+- **`pnpm prepare`**: This script is typically run after `pnpm install` and before `pnpm publish`. In this project, it simply runs `pnpm build`.
 
-    ```bash
-    pnpm prepare
-    ```
+  ```bash
+  pnpm prepare
+  ```
 
 ## Testing
 
