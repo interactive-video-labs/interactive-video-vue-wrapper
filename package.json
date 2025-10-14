@@ -46,7 +46,7 @@
   "bugs": {
     "url": "https://github.com/interactive-video-labs/interactive-video-vue-wrapper/issues"
   },
-  "packageManager": "pnpm@10.17.1",
+  "packageManager": "pnpm@10.18.3",
   "publishConfig": {
     "access": "public"
   },
