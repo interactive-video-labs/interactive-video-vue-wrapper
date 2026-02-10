@@ -36,59 +36,46 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { defineComponent } from 'vue';
 import InteractiveVideo from '../src'; // Adjust path as needed
 import { CuePoint } from '@interactive-video-labs/core';
 
-export default defineComponent({
-  name: 'ExampleInteractiveVideo',
-  components: {
-    InteractiveVideo,
-  },
-  setup() {
-    const handleAnalyticsEvent = (event: string, payload?: any) => {
-      console.log(`Analytics Event: ${event}`, payload);
-    };
+const handleAnalyticsEvent = (event: string, payload?: any) => {
+  console.log(`Analytics Event: ${event}`, payload);
+};
 
-    const exampleCues: CuePoint[] = [
-      {
-        id: 'segmentChange',
-        time: 10,
-        label: 'Segment Change',
-        payload: {
-          interaction: {
-            type: 'choice-video-segment-change',
-            title: 'Choose your path',
-            description: 'Select a video segment to jump to.',
-            question: 'Where would you like to go?',
-            options: [
-              {
-                level: 'Segment A',
-                video: 'https://interactive-video-labs.github.io/assets/sample-interaction-1.mp4',
-              },
-              {
-                level: 'Segment B',
-                video: 'https://interactive-video-labs.github.io/assets/sample-interaction-2.mp4',
-              },
-            ],
+const exampleCues: CuePoint[] = [
+  {
+    id: 'segmentChange',
+    time: 10,
+    label: 'Segment Change',
+    payload: {
+      interaction: {
+        type: 'choice-video-segment-change',
+        title: 'Choose your path',
+        description: 'Select a video segment to jump to.',
+        question: 'Where would you like to go?',
+        options: [
+          {
+            level: 'Segment A',
+            video: 'https://interactive-video-labs.github.io/assets/sample-interaction-1.mp4',
           },
-        },
+          {
+            level: 'Segment B',
+            video: 'https://interactive-video-labs.github.io/assets/sample-interaction-2.mp4',
+          },
+        ],
       },
-      {
-        id: 'intro',
-        time: 2,
-        label: 'Introduction',
-        payload: { message: 'Welcome!' },
-      },
-    ];
-
-    return {
-      handleAnalyticsEvent,
-      exampleCues,
-    };
+    },
   },
-});
+  {
+    id: 'intro',
+    time: 2,
+    label: 'Introduction',
+    payload: { message: 'Welcome!' },
+  },
+];
 </script>
 
 <style scoped>

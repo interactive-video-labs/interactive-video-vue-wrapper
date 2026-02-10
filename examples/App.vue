@@ -2,14 +2,6 @@
   <ExampleInteractiveVideo />
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
 import ExampleInteractiveVideo from './ExampleInteractiveVideo.vue';
-
-export default defineComponent({
-  name: 'App',
-  components: {
-    ExampleInteractiveVideo,
-  },
-});
 </script>
