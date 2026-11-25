@@ -1,3 +1,100 @@
+## v0.2.1 2026-11-25
+
+### Changed
+
+- Merge pull request #112 from interactive-video-labs/renovate/interactive-video-labs-core-0.x
+- Merge pull request #111 from interactive-video-labs/renovate/taj54-universal-version-bump-1.x
+- update dependency @interactive-video-labs/core to ^0.1.2 || ^0.2.0 || ^0.3.0
+- update taj54/universal-version-bump action to v1.6.0
+- Merge pull request #108 from interactive-video-labs/renovate/softprops-action-gh-release-3.x
+- Merge pull request #107 from interactive-video-labs/renovate/pnpm-action-setup-6.x
+- Merge pull request #109 from interactive-video-labs/renovate/taj54-universal-version-bump-1.x
+- update taj54/universal-version-bump action to v1
+- update softprops/action-gh-release action to v3
+- update pnpm/action-setup action to v6
+- Merge pull request #103 from interactive-video-labs/renovate/tsup-9.x
+- Merge pull request #102 from interactive-video-labs/renovate/node-26.x
+- Merge pull request #101 from interactive-video-labs/renovate/jsdom-31.x
+- update dependency tsup to v9
+- update dependency jsdom to v31
+- Merge pull request #105 from interactive-video-labs/renovate/vite-8.x
+- update dependency vite to v8
+- update dependency node to v26
+- Merge pull request #94 from interactive-video-labs/renovate/major-eslint-monorepo
+- Merge pull request #100 from interactive-video-labs/renovate/actions-setup-node-7.x
+- Merge pull request #99 from interactive-video-labs/renovate/actions-checkout-7.x
+- update eslint monorepo to v10
+- update actions/setup-node action to v7
+- update actions/checkout action to v7
+- Merge pull request #97 from interactive-video-labs/renovate/rimraf-6.x-lockfile
+- Merge pull request #90 from interactive-video-labs/renovate/eslint-monorepo
+- Merge pull request #89 from interactive-video-labs/renovate/vitejs-plugin-vue-6.x-lockfile
+- update eslint monorepo to v9.39.5
+- update dependency rimraf to v6.1.4
+- Merge pull request #86 from interactive-video-labs/renovate/jsdom-27.x-lockfile
+- update dependency jsdom to v27.4.0
+- Merge pull request #87 from interactive-video-labs/renovate/pnpm-10.x
+- update dependency @vitejs/plugin-vue to v6.0.11
+- Merge pull request #85 from interactive-video-labs/renovate/vite-7.x-lockfile
+- update dependency vite to v7.3.8
+- update pnpm to v10.34.9
+- Merge pull request #84 from interactive-video-labs/renovate/eslint-eslintrc-3.x-lockfile
+- Merge pull request #83 from interactive-video-labs/renovate/prettier-3.x-lockfile
+- Merge pull request #82 from interactive-video-labs/renovate/actions-checkout-6.x
+- Merge pull request #81 from interactive-video-labs/renovate/pnpm-10.x
+- Merge pull request #80 from interactive-video-labs/renovate/vite-7.x-lockfile
+- Merge pull request #79 from interactive-video-labs/renovate/rimraf-6.x-lockfile
+- update dependency vite to v7.2.6
+- update dependency rimraf to v6.1.2
+- Merge pull request #78 from interactive-video-labs/renovate/vitejs-plugin-vue-6.x-lockfile
+- Merge pull request #77 from interactive-video-labs/renovate/typescript-eslint-monorepo
+- update dependency prettier to v3.7.4
+- update typescript-eslint monorepo to v8.48.1
+- update dependency @eslint/eslintrc to v3.3.3
+- update pnpm to v10.24.0
+- update actions/checkout action to v6
+- update dependency @vitejs/plugin-vue to v6.0.2
+- Merge pull request #70 from interactive-video-labs/renovate/vite-7.x-lockfile
+- update dependency vite to v7.2.2
+- Merge pull request #75 from interactive-video-labs/renovate/typescript-eslint-monorepo
+- update typescript-eslint monorepo to v8.46.4
+- Merge pull request #76 from interactive-video-labs/renovate/tsup-8.x-lockfile
+- update dependency tsup to v8.5.1
+- Merge pull request #74 from interactive-video-labs/renovate/eslint-monorepo
+- Merge pull request #73 from interactive-video-labs/renovate/jsdom-27.x-lockfile
+- Merge pull request #72 from interactive-video-labs/renovate/rimraf-6.x-lockfile
+- Merge pull request #71 from interactive-video-labs/renovate/node-24.x
+- Merge pull request #68 from interactive-video-labs/renovate/pnpm-10.x
+- update pnpm to v10.22.0
+- update dependency jsdom to v27.2.0
+- update eslint monorepo to v9.39.1
+- update dependency rimraf to v6.1.0
+- update dependency node to v24
+- Merge pull request #66 from interactive-video-labs/renovate/vite-7.x-lockfile
+- Merge pull request #67 from interactive-video-labs/renovate/typescript-eslint-monorepo
+- update typescript-eslint monorepo to v8.46.2
+- update dependency vite to v7.1.11
+- Merge pull request #65 from interactive-video-labs/renovate/jsdom-27.x-lockfile
+- Merge pull request #64 from interactive-video-labs/renovate/actions-setup-node-6.x
+- Merge pull request #63 from interactive-video-labs/renovate/typescript-eslint-monorepo
+- update typescript-eslint monorepo to v8.46.1
+- Merge pull request #62 from interactive-video-labs/renovate/eslint-monorepo
+- Merge pull request #61 from interactive-video-labs/renovate/vite-7.x-lockfile
+- Merge pull request #60 from interactive-video-labs/renovate/pnpm-10.x
+- update dependency jsdom to v27.0.1
+- update eslint monorepo to v9.38.0
+- update dependency vite to v7.1.10
+- update pnpm to v10.18.3
+- update actions/setup-node action to v6
+- Merge pull request #58 from interactive-video-labs/renovate/typescript-5.x-lockfile
+- update dependency typescript to v5.9.3
+- Merge pull request #59 from interactive-video-labs/renovate/vite-7.x-lockfile
+- Merge pull request #57 from interactive-video-labs/renovate/typescript-eslint-monorepo
+- update dependency vite to v7.1.8
+- update typescript-eslint monorepo to v8.45.0
+- Merge pull request #56 from interactive-video-labs/renovate/interactive-video-labs-core-0.x
+- update dependency @interactive-video-labs/core to ^0.1.2 || ^0.2.0
+
 ## v0.2.0 2025-09-24
 
 ### Added
