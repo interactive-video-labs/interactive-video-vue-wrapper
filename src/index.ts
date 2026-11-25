@@ -11,8 +11,10 @@ import {
 /**
  * Props for the InteractiveVideo component.
  */
-export interface InteractiveVideoProps
-  extends Omit<PlayerConfig, 'videoUrl' | 'cues' | 'translations' | 'targetElementId'> {
+export interface InteractiveVideoProps extends Omit<
+  PlayerConfig,
+  'videoUrl' | 'cues' | 'translations' | 'targetElementId'
+> {
   /**
    * The URL of the video to be loaded.
    */
